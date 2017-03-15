@@ -66,7 +66,7 @@ void main(void)
 		uint8_t data;
 
 		uint16_t channel = ((uint16_t)(regs[1] & 0x01)<<8) | regs[0];
-		uint32_t freq = (422400UL + (channel * 100UL)) * (1 + ((regs[1] & ~NRF905_MASK_BAND) >> 1));
+		uint32_t freq = (422400UL + (channel * 100UL)) * (1 + (regs[1] & ~NRF905_MASK_BAND));
 
 		printf_P(PSTR("Channel: %u\n"), channel);
 		printf_P(PSTR("Freq: %luKHz\n"), freq);

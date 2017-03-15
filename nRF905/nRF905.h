@@ -41,8 +41,8 @@ typedef enum
 // They're defined as 0x02 here so when used for calculating channel they're right shifted by 1
 
 	NRF905_BAND_433 = 0x00,	/**< 433MHz band */
-	NRF905_BAND_868 = 0x02,	/**< 868MHz band */
-	NRF905_BAND_915 = 0x02	/**< 915MHz band */
+	NRF905_BAND_868 = 0x01,	/**< 868MHz band */
+	NRF905_BAND_915 = 0x01	/**< 915MHz band */
 } nRF905_band_t;
 
 /**
@@ -117,8 +117,8 @@ typedef enum
 
 // Setting options
 //#define NRF905_BAND_433			0x00
-//#define NRF905_BAND_868			0x02
-//#define NRF905_BAND_915			0x02
+//#define NRF905_BAND_868			0x01
+//#define NRF905_BAND_915			0x01
 //#define NRF905_PWR_n10			0x00
 //#define NRF905_PWR_n2			0x04
 //#define NRF905_PWR_6			0x08

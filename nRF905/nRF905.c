@@ -203,7 +203,7 @@ void nRF905_setFrequency(nRF905_band_t band, uint32_t freq)
 // Set channel
 void nRF905_setChannel(nRF905_band_t band, uint16_t channel)
 {
-	config.reg1 = (config.reg1 & NRF905_MASK_CHANNEL) | band | ((channel>>8) & 0x01);
+	config.reg1 = (config.reg1 & NRF905_MASK_CHANNEL) | (band<<1) | ((channel>>8) & 0x01);
 
 	CHIPSELECT(STANDBY)
 	{
@@ -269,7 +269,7 @@ static void setConfigRegister(uint8_t cmd, uint8_t val)
 static noinline void defaultConfig()
 {
 	uint16_t channel = NRF905_CALC_CHANNEL(NRF905_FREQ, NRF905_BAND);
-	uint8_t reg1 = NRF905_AUTO_RETRAN | NRF905_LOW_RX | NRF905_PWR | NRF905_BAND | ((channel>>8) & 0x01);
+	uint8_t reg1 = NRF905_AUTO_RETRAN | NRF905_LOW_RX | NRF905_PWR | (NRF905_BAND<<1) | ((channel>>8) & 0x01);
 	uint8_t reg2 = NRF905_CRC | NRF905_CLK_FREQ | NRF905_OUTCLK;
 
 	config.reg1 = reg1;
@@ -279,7 +279,7 @@ static noinline void defaultConfig()
 	// Set control registers
 	spiSelect();
 	spi_transfer_nr(NRF905_CMD_W_CONFIG);
-	spi_transfer_nr(channel);
+	spi_transfer_nr(channel & 0xFF);
 	spi_transfer_nr(reg1);
 	spi_transfer_nr((NRF905_ADDR_SIZE<<4) | NRF905_ADDR_SIZE);
 	spi_transfer_nr(NRF905_PAYLOAD_SIZE); // RX payload size

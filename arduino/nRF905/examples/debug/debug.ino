@@ -72,7 +72,7 @@ void loop()
 	byte data;
 
 	uint16_t channel = ((uint16_t)(regs[1] & 0x01)<<8) | regs[0];
-	uint32_t freq = (422400UL + (channel * 100UL)) * (1 + ((regs[1] & ~NRF905_MASK_BAND) >> 1));
+	uint32_t freq = (422400UL + (channel * 100UL)) * (1 + (regs[1] & ~NRF905_MASK_BAND));
 
 	Serial.print(F("Channel: "));
 	Serial.println(channel);

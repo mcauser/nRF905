@@ -147,6 +147,7 @@
 ///////////////////
 
 // Frequency
+// 433.2MHz, channel 108
 #define NRF905_FREQ			433200000UL
 
 // Frequency band
